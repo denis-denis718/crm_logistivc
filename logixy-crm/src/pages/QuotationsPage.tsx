@@ -197,31 +197,31 @@ export function QuotationsPage() {
   }, [rateResults])
 
   return (
-    <div className="p-6">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="p-4 sm:p-6">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Quotations</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-xl sm:text-2xl font-bold">Quotations</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Manage quotations and search historical rates. {filteredQuotations.length} quotations shown.
           </p>
         </div>
-        <Button onClick={handleCreateQuotation}>
+        <Button onClick={handleCreateQuotation} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Create Quotation
         </Button>
       </div>
 
       {/* Rate Search Widget */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Search className="h-5 w-5" />
+      <Card className="mb-4 sm:mb-6">
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+            <Search className="h-4 w-4 sm:h-5 sm:w-5" />
             Rate Search
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4 items-end">
-            <div className="flex-1 space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="space-y-2">
               <Label htmlFor="searchFrom">From</Label>
               <Input
                 id="searchFrom"
@@ -230,7 +230,7 @@ export function QuotationsPage() {
                 placeholder="e.g., Shanghai, China"
               />
             </div>
-            <div className="flex-1 space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="searchTo">To</Label>
               <Input
                 id="searchTo"
@@ -239,7 +239,7 @@ export function QuotationsPage() {
                 placeholder="e.g., Odesa, Ukraine"
               />
             </div>
-            <div className="w-32 space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="searchType">Type</Label>
               <Select value={searchType} onValueChange={(v) => setSearchType(v as ContainerType)}>
                 <SelectTrigger>
@@ -252,47 +252,50 @@ export function QuotationsPage() {
                 </SelectContent>
               </Select>
             </div>
-            <Button onClick={handleRateSearch}>
-              <Search className="mr-2 h-4 w-4" />
-              Search Rates
-            </Button>
+            <div className="space-y-2">
+              <Label className="hidden lg:block">&nbsp;</Label>
+              <Button onClick={handleRateSearch} className="w-full">
+                <Search className="mr-2 h-4 w-4" />
+                Search Rates
+              </Button>
+            </div>
           </div>
 
           {showRateResults && recommendedPrice && (
-            <div className="mt-6 border-t pt-4">
-              <div className="grid grid-cols-5 gap-4">
-                <div className="text-center p-4 bg-primary/10 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
+            <div className="mt-4 sm:mt-6 border-t pt-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
+                <div className="col-span-2 sm:col-span-1 text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">
                     ${recommendedPrice.recent.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+                  <div className="text-xs sm:text-sm text-muted-foreground flex items-center justify-center gap-1">
                     Recommended
-                    {recommendedPrice.trend === 'up' && <TrendingUp className="h-4 w-4 text-red-500" />}
-                    {recommendedPrice.trend === 'down' && <TrendingDown className="h-4 w-4 text-green-500" />}
-                    {recommendedPrice.trend === 'stable' && <Minus className="h-4 w-4 text-gray-500" />}
+                    {recommendedPrice.trend === 'up' && <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />}
+                    {recommendedPrice.trend === 'down' && <TrendingDown className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />}
+                    {recommendedPrice.trend === 'stable' && <Minus className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />}
                   </div>
                 </div>
-                <div className="text-center p-4 bg-muted rounded-lg">
-                  <div className="text-xl font-semibold">${recommendedPrice.average.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">30-Day Average</div>
+                <div className="text-center p-3 sm:p-4 bg-muted rounded-lg">
+                  <div className="text-lg sm:text-xl font-semibold">${recommendedPrice.average.toLocaleString()}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">30-Day Avg</div>
                 </div>
-                <div className="text-center p-4 bg-muted rounded-lg">
-                  <div className="text-xl font-semibold">${recommendedPrice.min.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">Lowest</div>
+                <div className="text-center p-3 sm:p-4 bg-muted rounded-lg">
+                  <div className="text-lg sm:text-xl font-semibold">${recommendedPrice.min.toLocaleString()}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Lowest</div>
                 </div>
-                <div className="text-center p-4 bg-muted rounded-lg">
-                  <div className="text-xl font-semibold">${recommendedPrice.max.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">Highest</div>
+                <div className="text-center p-3 sm:p-4 bg-muted rounded-lg">
+                  <div className="text-lg sm:text-xl font-semibold">${recommendedPrice.max.toLocaleString()}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Highest</div>
                 </div>
-                <div className="text-center p-4 bg-muted rounded-lg">
-                  <div className="text-xl font-semibold">{rateResults.length}</div>
-                  <div className="text-sm text-muted-foreground">Data Points</div>
+                <div className="text-center p-3 sm:p-4 bg-muted rounded-lg">
+                  <div className="text-lg sm:text-xl font-semibold">{rateResults.length}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Data Points</div>
                 </div>
               </div>
 
               <div className="mt-4">
-                <div className="text-sm font-medium mb-2">Historical Prices (Last Month)</div>
-                <div className="flex gap-1 items-end h-20">
+                <div className="text-xs sm:text-sm font-medium mb-2">Historical Prices (Last Month)</div>
+                <div className="flex gap-0.5 sm:gap-1 items-end h-16 sm:h-20">
                   {rateResults.map((result, index) => {
                     const height = ((result.price - recommendedPrice.min) / (recommendedPrice.max - recommendedPrice.min)) * 100 || 10
                     return (
@@ -312,10 +315,10 @@ export function QuotationsPage() {
       </Card>
 
       {/* Filter */}
-      <div className="mb-4 flex items-center gap-4">
-        <Label>Filter by Month:</Label>
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+        <Label className="text-sm">Filter by Month:</Label>
         <Select value={monthFilter} onValueChange={setMonthFilter}>
-          <SelectTrigger className="w-48">
+          <SelectTrigger className="w-full sm:w-48">
             <SelectValue placeholder="All months" />
           </SelectTrigger>
           <SelectContent>

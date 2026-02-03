@@ -199,15 +199,15 @@ export function ClientsPage() {
   }
 
   return (
-    <div className="p-6">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="p-4 sm:p-6">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Clients</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-xl sm:text-2xl font-bold">Clients</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Manage your client database. {clients.length} clients total across {holdingsCount} holdings.
           </p>
         </div>
-        <Button onClick={handleAddClient}>
+        <Button onClick={handleAddClient} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Client
         </Button>

@@ -72,10 +72,10 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">
           Welcome to Logixy CRM. Overview of your logistics operations.
         </p>
       </div>
@@ -210,7 +210,7 @@ export function DashboardPage() {
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground">#{index + 1}</span>
                     <Ship className="h-4 w-4 text-muted-foreground" />
-                    <span className="truncate max-w-[180px]">{route}</span>
+                    <span className="truncate max-w-[120px] sm:max-w-[180px]">{route}</span>
                   </div>
                   <Badge variant="outline">{count}</Badge>
                 </div>
@@ -226,14 +226,14 @@ export function DashboardPage() {
           <CardTitle className="text-lg">Quick Actions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4">
-            <Button asChild>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button asChild className="w-full sm:w-auto">
               <Link to="/clients">
                 <Users className="mr-2 h-4 w-4" />
                 Add New Client
               </Link>
             </Button>
-            <Button variant="secondary" asChild>
+            <Button variant="secondary" asChild className="w-full sm:w-auto">
               <Link to="/quotations">
                 <FileText className="mr-2 h-4 w-4" />
                 Create Quotation

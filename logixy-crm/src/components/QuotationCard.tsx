@@ -104,11 +104,11 @@ export function QuotationCard({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[90vh] p-0">
-        <DialogHeader className="px-6 py-4 border-b">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <DialogTitle className="text-xl">
+      <DialogContent className="max-w-3xl max-h-[90vh] w-[95vw] sm:w-full p-0">
+        <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 border-b">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <DialogTitle className="text-lg sm:text-xl">
                 {isEditing && !editedQuotation.from ? 'New Quotation' : 'Quotation Details'}
               </DialogTitle>
               <Badge variant="outline">{editedQuotation.type}</Badge>
@@ -117,23 +117,23 @@ export function QuotationCard({
               {isEditing ? (
                 <>
                   <Button variant="outline" size="sm" onClick={onEditToggle}>
-                    <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    <X className="mr-1 sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">Cancel</span>
                   </Button>
                   <Button size="sm" onClick={handleSave}>
-                    <Save className="mr-2 h-4 w-4" />
-                    Save
+                    <Save className="mr-1 sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">Save</span>
                   </Button>
                 </>
               ) : (
                 <Button variant="outline" size="sm" onClick={onEditToggle}>
-                  <Edit className="mr-2 h-4 w-4" />
-                  Edit
+                  <Edit className="mr-1 sm:mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Edit</span>
                 </Button>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mt-2 flex-wrap">
             <span className="font-mono">{editedQuotation.code}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
@@ -142,7 +142,7 @@ export function QuotationCard({
             </span>
             {editedQuotation.clientName && (
               <>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span className="flex items-center gap-1">
                   <Building className="h-3 w-3" />
                   {editedQuotation.clientName}
@@ -152,15 +152,15 @@ export function QuotationCard({
           </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[calc(90vh-120px)]">
-          <div className="px-6 py-4 space-y-6">
+        <ScrollArea className="max-h-[calc(90vh-140px)] sm:max-h-[calc(90vh-120px)]">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 space-y-4 sm:space-y-6">
             {/* Route Section */}
-            <div className="space-y-4">
-              <h3 className="font-semibold flex items-center gap-2">
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
                 <MapPin className="h-4 w-4" />
                 Route Information
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="from">From</Label>
                   {isEditing ? (
@@ -234,12 +234,12 @@ export function QuotationCard({
             <Separator />
 
             {/* Pricing Section */}
-            <div className="space-y-4">
-              <h3 className="font-semibold flex items-center gap-2">
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
                 <DollarSign className="h-4 w-4" />
                 Pricing (USD)
               </h3>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="freight">Freight</Label>
                   {isEditing ? (
@@ -325,10 +325,10 @@ export function QuotationCard({
                 </div>
               </div>
 
-              <div className="bg-primary/10 rounded-lg p-4 mt-4">
+              <div className="col-span-2 sm:col-span-3 bg-primary/10 rounded-lg p-3 sm:p-4 mt-2 sm:mt-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold">Total</span>
-                  <span className="text-2xl font-bold text-primary">
+                  <span className="font-semibold text-sm sm:text-base">Total</span>
+                  <span className="text-xl sm:text-2xl font-bold text-primary">
                     ${calculatedTotal.toLocaleString()}
                   </span>
                 </div>
@@ -338,12 +338,12 @@ export function QuotationCard({
             <Separator />
 
             {/* Providers Section */}
-            <div className="space-y-4">
-              <h3 className="font-semibold flex items-center gap-2">
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
                 <Ship className="h-4 w-4" />
                 Providers & Assignment
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="shippingLine">Shipping Line</Label>
                   {isEditing ? (

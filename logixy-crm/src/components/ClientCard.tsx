@@ -119,11 +119,11 @@ export function ClientCard({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] p-0">
-        <DialogHeader className="px-6 py-4 border-b">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <DialogTitle className="text-xl">
+      <DialogContent className="max-w-4xl max-h-[90vh] w-[95vw] sm:w-full p-0">
+        <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 border-b">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+              <DialogTitle className="text-lg sm:text-xl">
                 {isEditing && !editedClient.name ? 'New Client' : editedClient.name || 'Client Details'}
               </DialogTitle>
               <Badge variant={statusColors[editedClient.status]}>{editedClient.status}</Badge>
@@ -132,29 +132,29 @@ export function ClientCard({
               {isEditing ? (
                 <>
                   <Button variant="outline" size="sm" onClick={onEditToggle}>
-                    <X className="mr-2 h-4 w-4" />
-                    Cancel
+                    <X className="mr-1 sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">Cancel</span>
                   </Button>
                   <Button size="sm" onClick={handleSave}>
-                    <Save className="mr-2 h-4 w-4" />
-                    Save
+                    <Save className="mr-1 sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">Save</span>
                   </Button>
                 </>
               ) : (
                 <Button variant="outline" size="sm" onClick={onEditToggle}>
-                  <Edit className="mr-2 h-4 w-4" />
-                  Edit
+                  <Edit className="mr-1 sm:mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Edit</span>
                 </Button>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mt-2 flex-wrap">
             <span className="font-mono">{editedClient.code}</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>{editedClient.companyType}</span>
             {editedClient.holding && (
               <>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span className="flex items-center gap-1">
                   <Building2 className="h-3 w-3" />
                   {editedClient.holding}
@@ -164,17 +164,17 @@ export function ClientCard({
           </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[calc(90vh-120px)]">
-          <Tabs defaultValue="general" className="px-6 py-4">
-            <TabsList className="mb-4">
-              <TabsTrigger value="general">General</TabsTrigger>
-              <TabsTrigger value="contacts">Contacts ({editedClient.contacts.length})</TabsTrigger>
-              <TabsTrigger value="services">Services</TabsTrigger>
-              <TabsTrigger value="notes">Notes</TabsTrigger>
+        <ScrollArea className="max-h-[calc(90vh-140px)] sm:max-h-[calc(90vh-120px)]">
+          <Tabs defaultValue="general" className="px-4 sm:px-6 py-3 sm:py-4">
+            <TabsList className="mb-4 w-full sm:w-auto grid grid-cols-4 sm:flex">
+              <TabsTrigger value="general" className="text-xs sm:text-sm">General</TabsTrigger>
+              <TabsTrigger value="contacts" className="text-xs sm:text-sm">Contacts ({editedClient.contacts.length})</TabsTrigger>
+              <TabsTrigger value="services" className="text-xs sm:text-sm">Services</TabsTrigger>
+              <TabsTrigger value="notes" className="text-xs sm:text-sm">Notes</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="general" className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <TabsContent value="general" className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Company Name</Label>
                   {isEditing ? (
@@ -352,7 +352,7 @@ export function ClientCard({
 
               <Separator />
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="website">Website</Label>
                   {isEditing ? (
@@ -448,7 +448,7 @@ export function ClientCard({
                           </Button>
                         )}
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div className="space-y-2">
                           <Label>Full Name</Label>
                           {isEditing ? (
