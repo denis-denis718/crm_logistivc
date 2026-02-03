@@ -19,9 +19,9 @@ export function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background w-full max-w-full overflow-x-hidden">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-[#0a0e27] text-white">
+      <header className="sticky top-0 z-50 w-full border-b bg-[#0a0e27] text-white overflow-hidden">
         <div className="flex h-14 items-center px-4 sm:px-6">
           <Link to="/" className="flex items-center gap-2 font-semibold">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00d4ff] text-[#0a0e27]">
@@ -96,7 +96,7 @@ export function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {children}
       </main>
     </div>
